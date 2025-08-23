@@ -8,139 +8,146 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Session Driver
+    | Horizon Domain
     |--------------------------------------------------------------------------
-    |
-    | Supported: "file", "cookie", "database", "memcached",
-    |            "redis", "dynamodb", "array"
-    |
     */
 
-    'driver' => env('SESSION_DRIVER', 'database'),
+    'domain' => env('HORIZON_DOMAIN'),
 
     /*
     |--------------------------------------------------------------------------
-    | Session Lifetime
+    | Horizon Path
     |--------------------------------------------------------------------------
     */
 
-    'lifetime' => (int) env('SESSION_LIFETIME', 120),
-
-    'expire_on_close' => env('SESSION_EXPIRE_ON_CLOSE', false),
+    'path' => env('HORIZON_PATH', 'horizon'),
 
     /*
     |--------------------------------------------------------------------------
-    | Session Encryption
+    | Horizon Redis Connection
     |--------------------------------------------------------------------------
     */
 
-    'encrypt' => env('SESSION_ENCRYPT', false),
+    'use' => 'default',
 
     /*
     |--------------------------------------------------------------------------
-    | Session File Location
+    | Horizon Redis Prefix
     |--------------------------------------------------------------------------
     */
 
-    'files' => storage_path('framework/sessions'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Database Connection
-    |--------------------------------------------------------------------------
-    */
-
-    'connection' => env('SESSION_CONNECTION'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Database Table
-    |--------------------------------------------------------------------------
-    */
-
-    'table' => env('SESSION_TABLE', 'sessions'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Cache Store
-    |--------------------------------------------------------------------------
-    |
-    | Affects: "dynamodb", "memcached", "redis"
-    |
-    */
-
-    'store' => env('SESSION_STORE'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Sweeping Lottery
-    |--------------------------------------------------------------------------
-    */
-
-    'lottery' => [2, 100],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Session Cookie Name
-    |--------------------------------------------------------------------------
-    */
-
-    'cookie' => env(
-        'SESSION_COOKIE',
-        Str::snake((string) env('APP_NAME', 'laravel')) . '_session'
+    'prefix' => env(
+        'HORIZON_PREFIX',
+        Str::slug(env('APP_NAME', 'laravel'), '_') . '_horizon:'
     ),
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Path
+    | Horizon Route Middleware
     |--------------------------------------------------------------------------
     */
 
-    'path' => env('SESSION_PATH', '/'),
+    'middleware' => ['web'],
 
     /*
     |--------------------------------------------------------------------------
-    | Session Cookie Domain
+    | Queue Wait Time Thresholds
     |--------------------------------------------------------------------------
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'waits' => [
+        'redis:default' => 60,
+    ],
 
     /*
     |--------------------------------------------------------------------------
-    | HTTPS Only Cookies
+    | Job Trimming Times
     |--------------------------------------------------------------------------
     */
 
-    'secure' => env('SESSION_SECURE_COOKIE'),
+    'trim' => [
+        'recent'        => 60,
+        'pending'       => 60,
+        'completed'     => 60,
+        'recent_failed' => 10080,
+        'failed'        => 10080,
+        'monitored'     => 10080,
+    ],
 
     /*
     |--------------------------------------------------------------------------
-    | HTTP Access Only
+    | Silenced Jobs
     |--------------------------------------------------------------------------
     */
 
-    'http_only' => env('SESSION_HTTP_ONLY', true),
+    'silenced' => [
+        // App\Jobs\ExampleJob::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
-    | Same-Site Cookies
+    | Metrics
     |--------------------------------------------------------------------------
-    |
-    | See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value
-    |
-    | Supported: "lax", "strict", "none", null
-    |
     */
 
-    'same_site' => env('SESSION_SAME_SITE', 'lax'),
+    'metrics' => [
+        'trim_snapshots' => [
+            'job'   => 24,
+            'queue' => 24,
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
-    | Partitioned Cookies
+    | Fast Termination
     |--------------------------------------------------------------------------
     */
 
-    'partitioned' => env('SESSION_PARTITIONED_COOKIE', false),
+    'fast_termination' => false,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Memory Limit (MB)
+    |--------------------------------------------------------------------------
+    */
+
+    'memory_limit' => 64,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Queue Worker Configuration
+    |--------------------------------------------------------------------------
+    */
+
+    'defaults' => [
+        'supervisor-1' => [
+            'connection'          => 'redis',
+            'queue'               => ['default'],
+            'balance'             => 'auto',
+            'autoScalingStrategy' => 'time',
+            'maxProcesses'        => 1,
+            'maxTime'             => 0,
+            'maxJobs'             => 0,
+            'memory'              => 128,
+            'tries'               => 1,
+            'timeout'             => 60,
+            'nice'                => 0,
+        ],
+    ],
+
+    'environments' => [
+        'production' => [
+            'supervisor-1' => [
+                'maxProcesses'    => 10,
+                'balanceMaxShift' => 1,
+                'balanceCooldown' => 3,
+            ],
+        ],
+
+        'local' => [
+            'supervisor-1' => [
+                'maxProcesses' => 3,
+            ],
+        ],
+    ],
 ];
