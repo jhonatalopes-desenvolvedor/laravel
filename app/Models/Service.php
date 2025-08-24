@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -11,15 +12,18 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class Service extends Model
 {
+    /** @use HasFactory<\Database\Factories\ServiceFactory> */
+    use HasFactory;
+
     /**
-     * A tabela do banco de dados associada ao modelo Service.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'services';
 
     /**
-     * Os atributos que podem ser atribuídos em massa ao criar ou atualizar um serviço.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -33,7 +37,7 @@ class Service extends Model
     ];
 
     /**
-     * Os atributos que devem ser convertidos automaticamente para seus tipos PHP nativos.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -50,7 +54,7 @@ class Service extends Model
     ];
 
     /**
-     * Retorna a empresa que oferece este serviço.
+     * Obtém a empresa que oferece este serviço.
      *
      * @return BelongsTo<Company, covariant $this>
      */
@@ -60,7 +64,7 @@ class Service extends Model
     }
 
     /**
-     * Retorna os barbeiros que estão habilitados a realizar este serviço.
+     * Obtém os barbeiros que podem realizar este serviço.
      *
      * @return BelongsToMany<Barber, covariant $this, Pivot>
      */
@@ -71,7 +75,7 @@ class Service extends Model
     }
 
     /**
-     * Retorna as entradas de fila onde este serviço foi solicitado.
+     * Obtém os registros de fila em que este serviço foi solicitado.
      *
      * @return BelongsToMany<QueueEntry, covariant $this, Pivot>
      */

@@ -11,12 +11,19 @@ class MetaDataAnalyzer
 {
     private string $rootPath;
 
+    /**
+     * Inicializa o analisador com o caminho raiz do projeto.
+     *
+     * @param string $rootPath
+     */
     public function __construct(string $rootPath)
     {
         $this->rootPath = $rootPath;
     }
 
     /**
+     * Coleta metadados do projeto.
+     *
      * @return array<string, mixed>
      */
     public function getMetaData(): array
@@ -86,6 +93,8 @@ class MetaDataAnalyzer
     }
 
     /**
+     * Obtém dados do .env.
+     *
      * @return array<string, mixed>
      */
     private function getEnvData(): array

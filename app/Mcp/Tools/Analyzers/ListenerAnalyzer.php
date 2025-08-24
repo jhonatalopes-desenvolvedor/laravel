@@ -19,6 +19,8 @@ use Throwable;
 class ListenerAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa um arquivo de Listener e retorna informações sobre eventos tratados, se é enfileirável e propriedades da fila.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -133,6 +135,8 @@ class ListenerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe é um Listener, procurando por métodos 'handle' ou 'handle*'.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -150,6 +154,8 @@ class ListenerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe implementa a interface ShouldQueue.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -165,6 +171,8 @@ class ListenerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Obtém as dependências injetadas no construtor da classe.
+     *
      * @param Class_ $classNode
      * @return array<string>
      */
@@ -188,6 +196,8 @@ class ListenerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Identifica os eventos tratados e os métodos 'handle' ou 'handle*' na classe.
+     *
      * @param Class_ $classNode
      * @return array{0: array<string>, 1: bool, 2: int}
      */
@@ -219,6 +229,8 @@ class ListenerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Extrai as propriedades de fila (tries, timeout, maxExceptions) do Listener.
+     *
      * @param Class_ $classNode
      * @return array{0: int|null, 1: int|null, 2: int|null}
      */

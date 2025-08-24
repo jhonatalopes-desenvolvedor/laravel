@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarberSpecificSchedule extends Model
 {
+    /** @use HasFactory<\Database\Factories\BarberSpecificScheduleFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'barber_specific_schedules';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -31,7 +35,7 @@ class BarberSpecificSchedule extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -39,8 +43,8 @@ class BarberSpecificSchedule extends Model
         'id'             => 'integer',
         'barber_id'      => 'integer',
         'date'           => 'date',
-        'start_time'     => 'time',
-        'end_time'       => 'time',
+        'start_time'     => 'datetime:H:i:s',
+        'end_time'       => 'datetime:H:i:s',
         'is_working_day' => 'boolean',
         'reason'         => 'string',
         'created_at'     => 'datetime',
@@ -48,7 +52,7 @@ class BarberSpecificSchedule extends Model
     ];
 
     /**
-     * Get the barber that owns the specific schedule.
+     * Obtém o barbeiro associado ao horário específico.
      *
      * @return BelongsTo<Barber, covariant $this>
      */

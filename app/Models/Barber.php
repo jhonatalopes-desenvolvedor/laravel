@@ -5,24 +5,28 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Enums\BarberStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User;
 
-class Barber extends Authenticatable
+class Barber extends User
 {
+    /** @use HasFactory<\Database\Factories\BarberFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'barbers';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -41,7 +45,7 @@ class Barber extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Os atributos que devem ser ocultados durante a serialização.
      *
      * @var list<string>
      */
@@ -50,7 +54,7 @@ class Barber extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -72,7 +76,7 @@ class Barber extends Authenticatable
     ];
 
     /**
-     * Get the company that the barber belongs to.
+     * Obtém a empresa à qual o barbeiro pertence.
      *
      * @return BelongsTo<Company, covariant $this>
      */
@@ -82,7 +86,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the queue settings for the barber.
+     * Obtém as configurações de fila do barbeiro.
      *
      * @return HasOne<BarberQueueSetting, covariant $this>
      */
@@ -92,7 +96,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the address associated with the barber.
+     * Obtém o endereço associado ao barbeiro.
      *
      * @return HasOne<BarberAddress, covariant $this>
      */
@@ -102,7 +106,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the recurring schedules for the barber.
+     * Obtém os horários recorrentes do barbeiro.
      *
      * @return HasMany<BarberRecurringSchedule, covariant $this>
      */
@@ -112,7 +116,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the recurring breaks for the barber.
+     * Obtém os intervalos recorrentes do barbeiro.
      *
      * @return HasMany<BarberRecurringBreak, covariant $this>
      */
@@ -122,7 +126,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the specific schedules for the barber.
+     * Obtém os horários específicos do barbeiro.
      *
      * @return HasMany<BarberSpecificSchedule, covariant $this>
      */
@@ -132,7 +136,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the specific breaks for the barber.
+     * Obtém os intervalos específicos do barbeiro.
      *
      * @return HasMany<BarberSpecificBreak, covariant $this>
      */
@@ -142,7 +146,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * The services that the barber can perform.
+     * Retorna os serviços que o barbeiro pode realizar.
      *
      * @return BelongsToMany<Service, covariant $this, Pivot>
      */
@@ -153,7 +157,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the historical queue entries for this barber.
+     * Obtém os registros históricos de filas do barbeiro.
      *
      * @return HasMany<QueueEntry, covariant $this>
      */
@@ -163,7 +167,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the live queue entries for this barber.
+     * Obtém as filas ativas do barbeiro.
      *
      * @return HasMany<LiveQueue, covariant $this>
      */
@@ -173,7 +177,7 @@ class Barber extends Authenticatable
     }
 
     /**
-     * Get the password reset tokens for the barber.
+     * Obtém os tokens de redefinição de senha do barbeiro.
      *
      * @return HasMany<BarberPasswordResetToken, covariant $this>
      */

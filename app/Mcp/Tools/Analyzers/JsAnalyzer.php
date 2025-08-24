@@ -10,8 +10,18 @@ use Throwable;
 
 class JsAnalyzer
 {
+    /**
+     * Summary of nodePath
+     *
+     * @var string|null $scriptPath
+     */
     private ?string $nodePath;
 
+    /**
+     * Summary of scriptPath
+     *
+     * @var string
+     */
     private string $scriptPath;
 
     public function __construct()
@@ -21,6 +31,8 @@ class JsAnalyzer
     }
 
     /**
+     * Analisa um conjunto de arquivos JavaScript usando o script externo e retorna os resultados da análise em formato estruturado.
+     *
      * @param array<int, string> $filePaths
      * @return array<string, mixed>
      */

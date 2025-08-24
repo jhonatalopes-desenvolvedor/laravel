@@ -5,20 +5,24 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Enums\BarberQueueState;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarberQueueSetting extends Model
 {
+    /** @use HasFactory<\Database\Factories\BarberQueueSettingFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'barber_queues_settings';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -29,7 +33,7 @@ class BarberQueueSetting extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -43,7 +47,7 @@ class BarberQueueSetting extends Model
     ];
 
     /**
-     * Get the barber that owns the queue settings.
+     * Obtém o barbeiro associado às configurações da fila.
      *
      * @return BelongsTo<Barber, covariant $this>
      */

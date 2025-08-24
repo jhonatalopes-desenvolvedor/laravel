@@ -24,6 +24,8 @@ use Throwable;
 class ResourceAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa um arquivo de API Resource do Laravel.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -129,6 +131,8 @@ class ResourceAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe é um Resource API do Laravel.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -146,6 +150,8 @@ class ResourceAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Determina o tipo de Resource (single ou collection).
+     *
      * @param Class_ $classNode
      * @return string|null
      */
@@ -164,6 +170,8 @@ class ResourceAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Analisa um Resource individual para contar atributos, relações incluídas e condicionais.
+     *
      * @param Class_ $classNode
      * @return array{0: int, 1: array<int, string>, 2: bool}
      */
@@ -214,6 +222,8 @@ class ResourceAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Obtém o nome do Resource que a coleção envolve.
+     *
      * @param Class_ $classNode
      * @return string|null
      */
@@ -239,6 +249,8 @@ class ResourceAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta métodos adicionais na classe Resource (excluindo os padrões).
+     *
      * @param Class_ $classNode
      * @return int
      */

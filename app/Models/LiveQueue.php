@@ -6,20 +6,24 @@ namespace App\Models;
 
 use App\Enums\CustomerArrivalStatus;
 use App\Enums\LiveQueueStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class LiveQueue extends Model
 {
+    /** @use HasFactory<\Database\Factories\LiveQueueFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'live_queues';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -36,7 +40,7 @@ class LiveQueue extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -56,7 +60,7 @@ class LiveQueue extends Model
     ];
 
     /**
-     * Get the historical queue entry associated with this live queue.
+     * Obtém o registro histórico de fila associado a esta fila ativa.
      *
      * @return BelongsTo<QueueEntry, covariant $this>
      */
@@ -66,7 +70,7 @@ class LiveQueue extends Model
     }
 
     /**
-     * Get the barber associated with this live queue entry.
+     * Obtém o barbeiro associado a esta fila ativa.
      *
      * @return BelongsTo<Barber, covariant $this>
      */
@@ -76,7 +80,7 @@ class LiveQueue extends Model
     }
 
     /**
-     * Get the company associated with this live queue entry.
+     * Obtém a empresa associada a esta fila ativa.
      *
      * @return BelongsTo<Company, covariant $this>
      */
@@ -86,7 +90,7 @@ class LiveQueue extends Model
     }
 
     /**
-     * Get the customer profile associated with this live queue entry.
+     * Obtém o perfil do cliente associado a esta fila ativa.
      *
      * @return BelongsTo<CustomerProfile, covariant $this>
      */

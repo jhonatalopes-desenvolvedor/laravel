@@ -17,6 +17,8 @@ use Throwable;
 class ArtisanCommandAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisar o arquivo PHP e identificar se é um comando Artisan, retornando seus detalhes.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -107,6 +109,8 @@ class ArtisanCommandAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe estende a classe base de comandos Artisan.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -123,6 +127,8 @@ class ArtisanCommandAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de argumentos ou opções definidos na assinatura do comando.
+     *
      * @param string|null $signature
      * @param string $type
      * @return int

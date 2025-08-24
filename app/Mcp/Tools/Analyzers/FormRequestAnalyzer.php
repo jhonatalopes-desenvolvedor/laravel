@@ -22,6 +22,8 @@ use Throwable;
 class FormRequestAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa o arquivo PHP e retorna informações sobre a FormRequest, incluindo quantidade de regras, métodos customizados e tipo de autorização.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -98,6 +100,8 @@ class FormRequestAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe estende uma FormRequest base do Laravel ou customizada.
+     *
      * @param string $extendedClassName
      * @return bool
      */
@@ -118,6 +122,8 @@ class FormRequestAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta a quantidade de regras definidas no método rules().
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -139,6 +145,8 @@ class FormRequestAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a FormRequest implementa métodos customizados (messages ou attributes).
+     *
      * @param Class_ $classNode
      * @param string $methodName
      * @return bool
@@ -163,6 +171,8 @@ class FormRequestAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Analisa o tipo de lógica de autorização definida no método authorize().
+     *
      * @param Class_ $classNode
      * @return string
      */

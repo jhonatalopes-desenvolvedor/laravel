@@ -22,6 +22,8 @@ use Throwable;
 class MigrationAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa um arquivo de Migração do Laravel.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -81,6 +83,8 @@ class MigrationAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Encontra o nó da classe de Migração no array de nós do parser.
+     *
      * @param array<Node> $nodes
      * @return Class_|null
      */
@@ -120,6 +124,8 @@ class MigrationAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Analisa os métodos 'up' e 'down' da Migração para extrair informações do esquema.
+     *
      * @param ClassMethod $methodNode
      * @param array<string, mixed> $summary
      * @param string $direction 'up' or 'down'
@@ -188,6 +194,8 @@ class MigrationAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta operações de esquema dentro de uma closure (métodos de coluna, chaves estrangeiras, índices).
+     *
      * @param array<Stmt> $stmts
      * @param array<string, mixed> $summary
      */

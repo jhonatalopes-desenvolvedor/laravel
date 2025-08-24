@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CompanyApiSetting extends Model
 {
+    /** @use HasFactory<\Database\Factories\CompanyApiSettingFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'company_api_settings';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -29,7 +33,7 @@ class CompanyApiSetting extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -44,7 +48,7 @@ class CompanyApiSetting extends Model
     ];
 
     /**
-     * Get the company that owns the API settings.
+     * Obtém a empresa associada às configurações de API.
      *
      * @return BelongsTo<Company, covariant $this>
      */

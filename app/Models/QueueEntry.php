@@ -5,6 +5,7 @@ declare(strict_types = 1);
 namespace App\Models;
 
 use App\Enums\QueueEntryStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -13,15 +14,18 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class QueueEntry extends Model
 {
+    /** @use HasFactory<\Database\Factories\QueueEntryFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'queue_entries';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -37,7 +41,7 @@ class QueueEntry extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -56,7 +60,7 @@ class QueueEntry extends Model
     ];
 
     /**
-     * Get the company associated with the queue entry.
+     * Obtém a empresa associada a este registro de fila.
      *
      * @return BelongsTo<Company, covariant $this>
      */
@@ -66,7 +70,7 @@ class QueueEntry extends Model
     }
 
     /**
-     * Get the barber associated with the queue entry.
+     * Obtém o barbeiro associado a este registro de fila.
      *
      * @return BelongsTo<Barber, covariant $this>
      */
@@ -76,7 +80,7 @@ class QueueEntry extends Model
     }
 
     /**
-     * Get the customer profile associated with the queue entry.
+     * Obtém o perfil do cliente associado a este registro de fila.
      *
      * @return BelongsTo<CustomerProfile, covariant $this>
      */
@@ -86,7 +90,7 @@ class QueueEntry extends Model
     }
 
     /**
-     * The services requested in this queue entry.
+     * Os serviços solicitados neste registro de fila.
      *
      * @return BelongsToMany<Service, covariant $this, Pivot>
      */
@@ -97,7 +101,7 @@ class QueueEntry extends Model
     }
 
     /**
-     * Get the live queue entry associated with this historical entry.
+     * Obtém a fila ativa associada a este registro histórico.
      *
      * @return HasOne<LiveQueue, covariant $this>
      */

@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarberRecurringBreak extends Model
 {
+    /** @use HasFactory<\Database\Factories\BarberRecurringBreakFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'barber_recurring_breaks';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -30,7 +34,7 @@ class BarberRecurringBreak extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -38,15 +42,15 @@ class BarberRecurringBreak extends Model
         'id'               => 'integer',
         'barber_id'        => 'integer',
         'day_of_week'      => 'integer',
-        'break_start_time' => 'time',
-        'break_end_time'   => 'time',
+        'break_start_time' => 'datetime:H:i:s',
+        'break_end_time'   => 'datetime:H:i:s',
         'reason'           => 'string',
         'created_at'       => 'datetime',
         'updated_at'       => 'datetime',
     ];
 
     /**
-     * Get the barber that owns the recurring break.
+     * Obtém o barbeiro associado ao intervalo recorrente.
      *
      * @return BelongsTo<Barber, covariant $this>
      */

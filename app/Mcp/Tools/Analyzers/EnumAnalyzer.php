@@ -18,6 +18,8 @@ use Throwable;
 class EnumAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa o arquivo PHP e retorna informações sobre o enum, seus casos e métodos.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -85,6 +87,8 @@ class EnumAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de casos e métodos de um enum e identifica se é um enum com valor associado (backed).
+     *
      * @param Enum_ $enumNode
      * @return array{0: int, 1: int, 2: bool, 3: string|null}
      */

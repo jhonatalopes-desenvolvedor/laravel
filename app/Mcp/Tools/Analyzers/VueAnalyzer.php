@@ -14,6 +14,9 @@ class VueAnalyzer
 
     private string $scriptPath;
 
+    /**
+     * Inicializa o analisador Vue.js, localizando o executável do Node.js e o script de análise.
+     */
     public function __construct()
     {
         $this->nodePath   = (new ExecutableFinder())->find('node');
@@ -21,6 +24,8 @@ class VueAnalyzer
     }
 
     /**
+     * Analisa um lote de arquivos Vue.js em lote usando um script Node.js.
+     *
      * @param array<int, string> $filePaths
      * @return array<string, mixed>
      */

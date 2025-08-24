@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class BarberRecurringSchedule extends Model
 {
+    /** @use HasFactory<\Database\Factories\BarberRecurringScheduleFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'barber_recurring_schedules';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -30,7 +34,7 @@ class BarberRecurringSchedule extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -38,15 +42,15 @@ class BarberRecurringSchedule extends Model
         'id'             => 'integer',
         'barber_id'      => 'integer',
         'day_of_week'    => 'integer',
-        'start_time'     => 'time',
-        'end_time'       => 'time',
+        'start_time'     => 'datetime:H:i:s',
+        'end_time'       => 'datetime:H:i:s',
         'is_working_day' => 'boolean',
         'created_at'     => 'datetime',
         'updated_at'     => 'datetime',
     ];
 
     /**
-     * Get the barber that owns the recurring schedule.
+     * Obtém o barbeiro associado ao horário recorrente.
      *
      * @return BelongsTo<Barber, covariant $this>
      */

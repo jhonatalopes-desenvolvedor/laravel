@@ -10,21 +10,21 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class AdminPasswordResetToken extends Model
 {
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'admin_password_reset_tokens';
 
     /**
-     * Indicates if the model should be timestamped.
+     * Indica se o modelo deve ter timestamps.
      *
      * @var bool
      */
     public $timestamps = false;
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -36,7 +36,7 @@ class AdminPasswordResetToken extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -48,7 +48,7 @@ class AdminPasswordResetToken extends Model
     ];
 
     /**
-     * Get the company associated with the token.
+     * Obtém a empresa associada ao token.
      *
      * @return BelongsTo<Company, covariant $this>
      */
@@ -58,7 +58,7 @@ class AdminPasswordResetToken extends Model
     }
 
     /**
-     * Get the admin that the token belongs to.
+     * Obtém o administrador ao qual o token pertence.
      *
      * @return BelongsTo<Admin, covariant $this>
      */

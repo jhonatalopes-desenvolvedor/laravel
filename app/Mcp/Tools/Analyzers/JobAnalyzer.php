@@ -19,6 +19,8 @@ use Throwable;
 class JobAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa o arquivo PHP e retorna informações sobre um Job, incluindo métodos, propriedades, interfaces implementadas e configurações de fila.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -136,6 +138,8 @@ class JobAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe implementa ShouldQueue, identificando-a como Job.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -151,6 +155,8 @@ class JobAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Retorna todas as interfaces implementadas pela classe.
+     *
      * @param Class_ $classNode
      * @return array<string>
      */
@@ -166,6 +172,8 @@ class JobAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Retorna os tipos das dependências do construtor da classe.
+     *
      * @param Class_ $classNode
      * @return array<string>
      */
@@ -189,6 +197,8 @@ class JobAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta a quantidade de propriedades públicas da classe.
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -206,6 +216,8 @@ class JobAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Retorna valores padrão de propriedades específicas do Job (tries, timeout, maxExceptions).
+     *
      * @param Class_ $classNode
      * @return array{0: int|null, 1: int|null, 2: int|null}
      */

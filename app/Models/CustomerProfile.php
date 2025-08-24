@@ -6,21 +6,25 @@ namespace App\Models;
 
 use App\Enums\CustomerArrivalStatus;
 use App\Enums\CustomerRelationshipType;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class CustomerProfile extends Model
 {
+    /** @use HasFactory<\Database\Factories\CustomerProfileFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'customer_profiles';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -32,7 +36,7 @@ class CustomerProfile extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -47,7 +51,7 @@ class CustomerProfile extends Model
     ];
 
     /**
-     * Get the customer that owns the profile.
+     * Obtém o cliente associado ao perfil.
      *
      * @return BelongsTo<Customer, covariant $this>
      */
@@ -57,7 +61,7 @@ class CustomerProfile extends Model
     }
 
     /**
-     * Get the queue entries associated with this customer profile.
+     * Obtém os registros de fila associados a este perfil de cliente.
      *
      * @return HasMany<QueueEntry, covariant $this>
      */
@@ -67,7 +71,7 @@ class CustomerProfile extends Model
     }
 
     /**
-     * Get the live queue entries associated with this customer profile.
+     * Obtém as filas ativas associadas a este perfil de cliente.
      *
      * @return HasMany<LiveQueue, covariant $this>
      */

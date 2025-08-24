@@ -19,6 +19,8 @@ use Throwable;
 class EventAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa o arquivo PHP e retorna informações sobre o evento, suas propriedades públicas, métodos de broadcast e dependências do construtor.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -114,6 +116,8 @@ class EventAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Determina se a classe é um evento observável pelo sistema de broadcast do Laravel.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -155,6 +159,8 @@ class EventAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Retorna a quantidade e os tipos das propriedades públicas da classe.
+     *
      * @param Class_ $classNode
      * @return array{0: int, 1: string[]}
      */
@@ -189,6 +195,8 @@ class EventAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe implementa a interface ShouldBroadcast.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -204,6 +212,8 @@ class EventAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Retorna os tipos das dependências injetadas no construtor da classe.
+     *
      * @param Class_ $classNode
      * @return array<string>
      */

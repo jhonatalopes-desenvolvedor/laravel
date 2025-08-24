@@ -29,10 +29,18 @@ use Throwable;
 
 abstract class PhpFileAnalyzer
 {
-    /** @var ParserFactory */
+    /**
+     * Summary of parserFactory
+     *
+     * @var ParserFactory
+     */
     protected ParserFactory $parserFactory;
 
-    /** @var PrettyPrinter */
+    /**
+     * Fábrica para criar parsers do PHP-Parser.
+     *
+     * @var PrettyPrinter
+     */
     protected PrettyPrinter $prettyPrinter;
 
     public function __construct()
@@ -42,7 +50,7 @@ abstract class PhpFileAnalyzer
     }
 
     /**
-     * Analisa um arquivo PHP.
+     * Impressora padrão para formatar nós do AST.
      *
      * @param string $filePath
      * @return array<string, mixed>

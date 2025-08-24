@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CompanyOperatingHour extends Model
 {
+    /** @use HasFactory<\Database\Factories\CompanyOperatingHourFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'company_operating_hours';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -30,7 +34,7 @@ class CompanyOperatingHour extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -38,15 +42,15 @@ class CompanyOperatingHour extends Model
         'id'          => 'integer',
         'company_id'  => 'integer',
         'day_of_week' => 'integer',
-        'open_time'   => 'time',
-        'close_time'  => 'time',
+        'open_time'   => 'datetime:H:i:s',
+        'close_time'  => 'datetime:H:i:s',
         'is_closed'   => 'boolean',
         'created_at'  => 'datetime',
         'updated_at'  => 'datetime',
     ];
 
     /**
-     * Get the company that owns the operating hour.
+     * Obtém a empresa associada ao horário de funcionamento.
      *
      * @return BelongsTo<Company, covariant $this>
      */

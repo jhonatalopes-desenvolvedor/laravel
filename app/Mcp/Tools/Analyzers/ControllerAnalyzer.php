@@ -26,6 +26,8 @@ use Throwable;
 class ControllerAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa o arquivo PHP e identifica se é um Controller, retornando suas características.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -101,6 +103,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe estende uma classe base de Controllers do Laravel.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -118,6 +122,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de métodos definidos no Controller.
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -135,6 +141,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Identifica se o Controller implementa todos ou parte dos métodos de um Resource Controller.
+     *
      * @param Class_ $classNode
      * @return string|null
      */
@@ -159,6 +167,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de middlewares aplicados ao Controller.
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -182,6 +192,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se o Controller utiliza Form Requests nos métodos públicos.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -207,6 +219,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta a quantidade de middlewares definidos diretamente na propriedade.
+     *
      * @param Node\Expr|null $defaultExpr
      * @return int
      */
@@ -222,6 +236,8 @@ class ControllerAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta a quantidade de middlewares aplicados dentro do construtor.
+     *
      * @param ClassMethod $constructorNode
      * @return int
      */

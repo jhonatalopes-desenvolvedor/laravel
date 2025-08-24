@@ -20,6 +20,8 @@ use Throwable;
 class ModelAnalyzer extends PhpFileAnalyzer
 {
     /**
+     * Analisa um arquivo de Modelo Eloquent.
+     *
      * @param string $filePath
      * @return array<string, mixed>
      */
@@ -111,6 +113,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se a classe é um Modelo Eloquent.
+     *
      * @param Class_ $classNode
      * @return bool
      */
@@ -129,6 +133,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Obtém o nome da tabela do modelo.
+     *
      * @param Class_ $classNode
      * @param string $className
      * @return string
@@ -145,6 +151,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta a quantidade de elementos em uma propriedade de array do modelo (fillable, guarded, casts).
+     *
      * @param Class_ $classNode
      * @param string $propertyName
      * @return int
@@ -165,6 +173,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de métodos de relacionamento definidos no modelo.
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -182,6 +192,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Conta o número de métodos de escopo local definidos no modelo.
+     *
      * @param Class_ $classNode
      * @return int
      */
@@ -199,6 +211,8 @@ class ModelAnalyzer extends PhpFileAnalyzer
     }
 
     /**
+     * Verifica se um método de classe é um método de relacionamento Eloquent.
+     *
      * @param ClassMethod $methodNode
      * @return bool
      */

@@ -6,21 +6,25 @@ namespace App\Models;
 
 use App\Enums\CompanyOperationalStatus;
 use App\Enums\CompanySaaSStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Company extends Model
 {
+    /** @use HasFactory<\Database\Factories\CompanyFactory> */
+    use HasFactory;
+
     /**
-     * Summary of table
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'companies';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -35,7 +39,7 @@ class Company extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -51,7 +55,7 @@ class Company extends Model
     ];
 
     /**
-     * Get the address associated with the company.
+     * Obtém o endereço associado à empresa.
      *
      * @return HasOne<CompanyAddress, covariant $this>
      */
@@ -61,7 +65,7 @@ class Company extends Model
     }
 
     /**
-     * Get the API settings associated with the company.
+     * Obtém as configurações de API associadas à empresa.
      *
      * @return HasOne<CompanyApiSetting, covariant $this>
      */
@@ -71,7 +75,7 @@ class Company extends Model
     }
 
     /**
-     * Get the operating hours for the company.
+     * Obtém os horários de funcionamento da empresa.
      *
      * @return HasMany<CompanyOperatingHour, covariant $this>
      */
@@ -81,7 +85,7 @@ class Company extends Model
     }
 
     /**
-     * Get the holidays for the company.
+     * Obtém os feriados da empresa.
      *
      * @return HasMany<CompanyHoliday, covariant $this>
      */
@@ -91,7 +95,7 @@ class Company extends Model
     }
 
     /**
-     * Get the admins for the company.
+     * Obtém os administradores da empresa.
      *
      * @return HasMany<Admin, covariant $this>
      */
@@ -101,7 +105,7 @@ class Company extends Model
     }
 
     /**
-     * Get the services offered by the company.
+     * Obtém os serviços oferecidos pela empresa.
      *
      * @return HasMany<Service, covariant $this>
      */
@@ -111,7 +115,7 @@ class Company extends Model
     }
 
     /**
-     * Get the barbers associated with the company.
+     * Obtém os barbeiros associados à empresa.
      *
      * @return HasMany<Barber, covariant $this>
      */
@@ -121,7 +125,7 @@ class Company extends Model
     }
 
     /**
-     * Get the customers associated with the company.
+     * Obtém os clientes associados à empresa.
      *
      * @return HasMany<Customer, covariant $this>
      */
@@ -131,7 +135,7 @@ class Company extends Model
     }
 
     /**
-     * Get the queue entries for the company.
+     * Obtém os registros de filas da empresa.
      *
      * @return HasMany<QueueEntry, covariant $this>
      */
@@ -141,7 +145,7 @@ class Company extends Model
     }
 
     /**
-     * Get the live queue entries for the company.
+     * Obtém as filas ativas da empresa.
      *
      * @return HasMany<LiveQueue, covariant $this>
      */

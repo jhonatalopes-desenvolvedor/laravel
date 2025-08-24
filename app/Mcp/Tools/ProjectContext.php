@@ -64,6 +64,8 @@ class ProjectContext
     private PhpFileAnalyzer $generalPhpFileAnalyzer;
 
     /**
+     * Inicializa o contexto do projeto, escaneando arquivos e coletando metadados.
+     *
      * @param string $rootPath
      * @param array<int, string> $excludedPaths
      */
@@ -106,6 +108,8 @@ class ProjectContext
         $this->generalPhpFileAnalyzer = new class() extends PhpFileAnalyzer
         {
             /**
+             * Retorna um array vazio, pois este analisador genérico não realiza análises específicas.
+             *
              * @param string $filePath
              * @return array<string, mixed>
              */
@@ -119,6 +123,8 @@ class ProjectContext
     }
 
     /**
+     * Retorna os dados do contexto do projeto, filtrados opcionalmente.
+     *
      * @param array<string, mixed> $filters
      * @return array<string, mixed>
      */
@@ -150,6 +156,8 @@ class ProjectContext
     }
 
     /**
+     * Filtra recursivamente a árvore de diretórios com base em padrões de inclusão.
+     *
      * @param array<string, mixed> $fullTree
      * @param array<int|string, mixed> $patterns
      * @param string $currentPath
@@ -223,6 +231,8 @@ class ProjectContext
     }
 
     /**
+     * Constrói o contexto completo do projeto, incluindo metadados e a árvore de arquivos.
+     *
      * @return array<string, mixed>
      */
     private function buildProjectContext(): array
@@ -236,6 +246,8 @@ class ProjectContext
     }
 
     /**
+     * Escaneia a árvore de diretórios do projeto, analisa arquivos PHP, Vue e JS.
+     *
      * @return array<string, mixed>
      */
     private function scanProjectTree(): array
@@ -339,6 +351,8 @@ class ProjectContext
     }
 
     /**
+     * Mescla os resultados da análise de frontend (Vue/JS) na árvore de diretórios.
+     *
      * @param array<string, mixed> $tree
      * @param array<string, string> $pathMap
      * @param array<string, mixed> $analysisResults
@@ -375,7 +389,10 @@ class ProjectContext
     }
 
     /**
+     * Conta as linhas de um arquivo, ignorando linhas vazias.
+     *
      * @param string $filePath
+     * @return int
      */
     private function countFileLines(string $filePath): int
     {
@@ -387,6 +404,8 @@ class ProjectContext
     }
 
     /**
+     * Verifica se um caminho relativo deve ser excluído da análise.
+     *
      * @param string $relativePath
      * @param bool $isDir
      * @return bool

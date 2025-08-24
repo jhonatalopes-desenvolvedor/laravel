@@ -4,20 +4,24 @@ declare(strict_types = 1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class CompanyAddress extends Model
 {
+    /** @use HasFactory<\Database\Factories\CompanyAddressFactory> */
+    use HasFactory;
+
     /**
-     * The table associated with the model.
+     * A tabela associada ao modelo.
      *
      * @var string
      */
     protected $table = 'company_addresses';
 
     /**
-     * The attributes that are mass assignable.
+     * Os atributos que podem ser preenchidos em massa.
      *
      * @var list<string>
      */
@@ -35,7 +39,7 @@ class CompanyAddress extends Model
     ];
 
     /**
-     * The attributes that should be cast.
+     * Os atributos que devem ter tipo definido (cast).
      *
      * @var array<string, string|class-string>
      */
@@ -56,7 +60,7 @@ class CompanyAddress extends Model
     ];
 
     /**
-     * Get the company that owns the address.
+     * Obtém a empresa associada ao endereço.
      *
      * @return BelongsTo<Company, covariant $this>
      */
